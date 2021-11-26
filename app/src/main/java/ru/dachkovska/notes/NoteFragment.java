@@ -57,6 +57,7 @@ public class NoteFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // добавляем фрагмент через add
         fragmentTransaction.add(R.id.fragment_container, descriptionsFragment);
+        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
 }
