@@ -17,6 +17,11 @@ import android.widget.TextView;
 
 public class NoteFragment extends Fragment {
 
+
+    private static final String CURRENT_NOTE = "CurrentNote";
+    // Текущая позиция (выбранная заметка)
+    private int currentPosition = 0;
+
     // При создании фрагмента укажем его макет
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +33,16 @@ public class NoteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Восстановление текущей позиции
+        if (savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt(CURRENT_NOTE, 0);
+        }
         initList(view);
+
+        // отображения открытого ранее герба в ландшафтной ориентации
+        if (isLandscape()) {
+            showLandDescription(currentPosition);
+        }
     }
 
     // создаём список заметок на экране из массива в ресурсах
@@ -47,6 +61,7 @@ public class NoteFragment extends Fragment {
             layoutView.addView(tv);
             final int position=i;
             tv.setOnClickListener(v -> {
+                currentPosition=position;
                 showDescription(position);
             });
         }
@@ -54,8 +69,7 @@ public class NoteFragment extends Fragment {
 
 
     private void showDescription(int index) {
-        if (getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape()) {
             showLandDescription(index);
         } else {
             showPortDescription(index);
@@ -84,5 +98,16 @@ public class NoteFragment extends Fragment {
         fragmentTransaction.replace(R.id.description_container, detail);  // замена фрагмента
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(CURRENT_NOTE, currentPosition);
+        super.onSaveInstanceState(outState);
+    }
+
+    private boolean isLandscape() {
+        return getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
     }
 }
