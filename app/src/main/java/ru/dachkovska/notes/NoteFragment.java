@@ -28,7 +28,7 @@ public class NoteFragment extends Fragment {
         initList(view);
     }
 
-    // создаём список городов на экране из массива в ресурсах
+    // создаём список заметок на экране из массива в ресурсах
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
         String[] notes = getResources().getStringArray(R.array.notes);
