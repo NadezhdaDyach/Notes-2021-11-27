@@ -56,7 +56,7 @@ public class NoteFragment extends Fragment {
         // и добавляем на экран.
         for (int i=0; i<notes.length;i++) {
             String note=notes[i];
-            EditText tv = new EditText(getContext());
+            TextView tv = new TextView(getContext());
             tv.setText(note);
             tv.setTextSize(30);
             layoutView.addView(tv);
