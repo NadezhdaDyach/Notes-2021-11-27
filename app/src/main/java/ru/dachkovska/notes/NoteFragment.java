@@ -1,5 +1,6 @@
 package ru.dachkovska.notes;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -51,13 +52,37 @@ public class NoteFragment extends Fragment {
         }
     }
 
+
     private void showDescription(int index) {
+        if (getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE) {
+            showLandDescription(index);
+        } else {
+            showPortDescription(index);
+        }
+    }
+
+    // Показываем описание в портретной ориентации
+    private void showPortDescription(int index) {
         DescriptionsFragment descriptionsFragment = DescriptionsFragment.newInstance(index);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // добавляем фрагмент через add
         fragmentTransaction.add(R.id.fragment_container, descriptionsFragment);
         fragmentTransaction.addToBackStack("");
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
+    }
+
+    // Показываем описание в ландшафтной ориентации
+    private void showLandDescription(int index) {
+        // Создаём новый фрагмент с текущей позицией для вывода герба
+        DescriptionsFragment detail = DescriptionsFragment.newInstance(index);
+        // Выполняем транзакцию по замене фрагмента
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.description_container, detail);  // замена фрагмента
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
 }
