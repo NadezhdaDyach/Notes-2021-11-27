@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,11 +38,25 @@ public class NoteFragment extends Fragment {
         // В этом цикле создаём элемент TextView,
         // заполняем его значениями,
         // и добавляем на экран.
-        for (String note : notes) {
+        for (int i=0; i<notes.length;i++) {
+            String note=notes[i];
             TextView tv = new TextView(getContext());
             tv.setText(note);
             tv.setTextSize(30);
             layoutView.addView(tv);
+            final int position=i;
+            tv.setOnClickListener(v -> {
+                showDescription(position);
+            });
         }
+    }
+
+    private void showDescription(int index) {
+        DescriptionsFragment descriptionsFragment = DescriptionsFragment.newInstance(index);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        // добавляем фрагмент через add
+        fragmentTransaction.add(R.id.fragment_container, descriptionsFragment);
+        fragmentTransaction.commit();
     }
 }
