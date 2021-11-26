@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,12 +33,12 @@ public class DescriptionsFragment extends Fragment {
         // поэтому обязательно проверяем на null
         if (arguments != null) {
             int index = arguments.getInt(ARG_INDEX);
-            // найдем в root view нужный ImageView
-            TextView textViewDescription = view.findViewById(R.id.description_text_view);
+            // найдем в root view нужный EditText
+            EditText editTextDescription = view.findViewById(R.id.description_text_view);
             // Получим из ресурсов массив описания заметок
             String[] descriptions = getResources().getStringArray(R.array.description);
-            // Возьмем нужное описание и отобразим в TextView
-           textViewDescription.setText(descriptions[index]);
+            // Возьмем нужное описание и отобразим в EditText
+           editTextDescription.setText(descriptions[index]);
         }
     }
 

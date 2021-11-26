@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -55,7 +56,7 @@ public class NoteFragment extends Fragment {
         // и добавляем на экран.
         for (int i=0; i<notes.length;i++) {
             String note=notes[i];
-            TextView tv = new TextView(getContext());
+            EditText tv = new EditText(getContext());
             tv.setText(note);
             tv.setTextSize(30);
             layoutView.addView(tv);
