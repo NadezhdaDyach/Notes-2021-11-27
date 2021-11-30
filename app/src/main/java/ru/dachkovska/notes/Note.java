@@ -1,6 +1,9 @@
 package ru.dachkovska.notes;
 
-public class Note {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Note implements Parcelable {
     private String noteName;
     private String description;
     private String crDate;
@@ -38,5 +41,15 @@ public class Note {
         this.noteName = noteName;
         this.description = description;
         this.crDate = crDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

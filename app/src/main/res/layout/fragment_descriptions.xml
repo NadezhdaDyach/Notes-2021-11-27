@@ -11,6 +11,13 @@
     tools:context=".DescriptionsFragment"
     >
 
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        android:text="Назад"
+        />
     <EditText
         android:id="@+id/description_text_view"
         android:layout_width="match_parent"

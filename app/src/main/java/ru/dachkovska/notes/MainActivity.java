@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         // Вызываем FragmentManager
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, notesFragment).commit();
+                .addToBackStack("")
+                .add(R.id.fragment_container, notesFragment).commit();
     }
 }

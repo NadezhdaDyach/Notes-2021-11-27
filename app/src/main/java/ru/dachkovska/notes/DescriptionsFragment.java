@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,24 +33,29 @@ public class DescriptionsFragment extends Fragment {
         // Аргументы могут быть null (как в случае с методом Activity getIntent())
         // поэтому обязательно проверяем на null
         if (arguments != null) {
-            int index = arguments.getInt(ARG_INDEX);
+            Note note = arguments.getParcelable(ARG_INDEX);
             // найдем в root view нужный EditText
             EditText editTextDescription = view.findViewById(R.id.description_text_view);
             // Получим из ресурсов массив описания заметок
             String[] descriptions = getResources().getStringArray(R.array.description);
             // Возьмем нужное описание и отобразим в EditText
-           editTextDescription.setText(descriptions[index]);
+           editTextDescription.setText(note.getDescription());
         }
+
+        Button buttonBack = view.findViewById(R.id.button_back);
+        buttonBack.setOnClickListener(view1 -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
     }
 
     // Фабричный метод создания фрагмента
     // Фрагменты рекомендуется создавать через фабричные методы
-    public static DescriptionsFragment newInstance(int index) {
+    public static DescriptionsFragment newInstance(Note note) {
         // Создание фрагмента
         DescriptionsFragment fragment = new DescriptionsFragment();
         // Передача параметра через бандл
         Bundle args = new Bundle();
-        args.putInt(ARG_INDEX, index);
+        args.putParcelable(ARG_INDEX, note);
         fragment.setArguments(args);
         return fragment;
     }
