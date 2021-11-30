@@ -9,6 +9,23 @@ public class Note implements Parcelable {
     private String crDate;
 
 
+    protected Note(Parcel in) {
+        noteName = in.readString();
+        description = in.readString();
+        crDate = in.readString();
+    }
+
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
+        @Override
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
+        }
+
+        @Override
+        public Note[] newArray(int size) {
+            return new Note[size];
+        }
+    };
 
     public String getNoteName() {
         return noteName;
@@ -50,6 +67,8 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(noteName);
+        dest.writeString(description);
+        dest.writeString(crDate);
     }
 }
