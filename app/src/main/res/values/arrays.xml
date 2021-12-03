@@ -1,0 +1,25 @@
+<resources>
+    <string-array name="notes">
+        <item>Note1</item>
+        <item>Note2</item>
+        <item>Note3</item>
+        <item>Note4</item>
+        <item>Note5</item>
+    </string-array>
+
+    <string-array name="created_dates">
+        <item>20 ноября 2021</item>
+        <item>21 ноября 2021</item>
+        <item>22 ноября 2021</item>
+        <item>23 ноября 2021</item>
+        <item>24 ноября 2021</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>description1</item>
+        <item>description2</item>
+        <item>description3</item>
+        <item>description4</item>
+        <item>description5</item>
+    </string-array>
+</resources>
