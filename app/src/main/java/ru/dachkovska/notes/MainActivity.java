@@ -2,13 +2,16 @@ package ru.dachkovska.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         return true;
                     case R.id.action_drawer_exit:
-                        finish();
+
+                        showAlertDialog();
                         return true;
                 }
                 return false;
@@ -89,11 +93,31 @@ public class MainActivity extends AppCompatActivity {
                 openAboutFragment();
                 return true;
             case R.id.action_exit:
-                finish();
+                showAlertDialog();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Notes")
+                .setMessage("Вы уверены, что хотите выйти из приложения?")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Выход из приложения", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Возврат в приложение", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
     }
 
 }
