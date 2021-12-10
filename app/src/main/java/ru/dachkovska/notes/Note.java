@@ -8,11 +8,14 @@ public class Note implements Parcelable {
     private String description;
     private String crDate;
 
+    private int picture;
+
 
     protected Note(Parcel in) {
         noteName = in.readString();
         description = in.readString();
         crDate = in.readString();
+        picture=in.readInt();
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
@@ -51,13 +54,22 @@ public class Note implements Parcelable {
         this.crDate = crDate;
     }
 
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
     public Note() {
     }
 
-    public Note(String noteName, String description, String crDate) {
+    public Note(String noteName, String description, String crDate, int picture) {
         this.noteName = noteName;
         this.description = description;
         this.crDate = crDate;
+        this.picture=picture;
     }
 
     @Override
@@ -70,5 +82,6 @@ public class Note implements Parcelable {
         dest.writeString(noteName);
         dest.writeString(description);
         dest.writeString(crDate);
+        dest.writeInt(picture);
     }
 }
