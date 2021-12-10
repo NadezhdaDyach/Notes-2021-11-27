@@ -39,6 +39,9 @@ public class NoteFragment extends Fragment {
         String[] notes = getResources().getStringArray(R.array.notes);
         String[] descriptions = getResources().getStringArray(R.array.description);
         String[] dates = getResources().getStringArray(R.array.created_dates);
+
+        // При помощи этого объекта будем доставать элементы, спрятанные в item.xml
+        LayoutInflater ltInflater = getLayoutInflater();
         // В этом цикле создаём элемент TextView,
         // заполняем его значениями,
         // и добавляем на экран.
@@ -46,10 +49,18 @@ public class NoteFragment extends Fragment {
             String currentNote=notes[i];
             String currentDescription=descriptions[i];
             String currentDate=dates[i];
-            TextView tv = new TextView(getContext());
+           /* TextView tv = new TextView(getContext());
             tv.setText(currentNote);
             tv.setTextSize(30);
-            layoutView.addView(tv);
+            layoutView.addView(tv);*/
+
+            // Достаём элемент из item.xml
+            View item = ltInflater.inflate(R.layout.item, layoutView, false);
+            // Находим в этом элементе TextView
+            TextView tv = item.findViewById(R.id.textView);
+            tv.setText(currentNote);
+            layoutView.addView(item);
+
             final int position=i;
             tv.setOnClickListener(v -> {
                 showPortDescription(new Note(currentNote,currentDescription,currentDate));
