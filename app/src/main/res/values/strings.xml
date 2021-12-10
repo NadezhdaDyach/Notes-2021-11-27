@@ -15,4 +15,19 @@
     <string name="exit_alertdialog_negative_button_text">Нет</string>
     <string name="exit_alertdialog_positive_button_toast_text">Выход из приложения</string>
     <string name="exit_alertdialog_negative_button_toast_text">Возврат в приложение</string>
+    <string name="title1">Note1</string>
+    <string name="title2">Note2</string>
+    <string name="title3">Note3</string>
+    <string name="title4">Note4</string>
+    <string name="title5">Note5</string>
+    <string name="created_date1">20 ноября 2021</string>
+    <string name="created_date2">21 ноября 2021</string>
+    <string name="created_date3">22 ноября 2021</string>
+    <string name="created_date4">23 ноября 2021</string>
+    <string name="created_date5">24 ноября 2021</string>
+    <string name="description1">description1</string>
+    <string name="description2">description2</string>
+    <string name="description3">description3</string>
+    <string name="description4">description4</string>
+    <string name="description5">description5</string>
 </resources>
