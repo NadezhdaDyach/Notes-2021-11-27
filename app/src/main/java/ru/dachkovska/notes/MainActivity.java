@@ -102,19 +102,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void showAlertDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Notes")
-                .setMessage("Вы уверены, что хотите выйти из приложения?")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.title)
+                .setMessage(R.string.message)
+                .setPositiveButton(R.string.exit_alertdialog_positive_button_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Выход из приложения", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.exit_alertdialog_positive_button_toast_text, Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 })
-                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.exit_alertdialog_negative_button_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Возврат в приложение", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.exit_alertdialog_negative_button_toast_text, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .show();
